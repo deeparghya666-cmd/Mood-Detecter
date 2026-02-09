@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mood Detector</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+      text-align: center;
+      padding-top: 60px;
+      overflow: hidden;
+    }
+
+    h1 {
+      color: #fff;
+    }
+
+    button {
+      font-size: 18px;
+      padding: 12px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 30px;
+      font-size: 22px;
+      color: #fff;
+      z-index: 10;
+      position: relative;
+    }
+
+    .chocolate {
+      position: absolute;
+      top: -30px;
+      font-size: 30px;
+      animation: fall 3s linear forwards;
+    }
+
+    @keyframes fall {
+      from {
+        top: -30px;
+      }
+      to {
+        top: 100vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>How are you feeling today? 💭</h1>
+
+  <button onclick="detectMood()">😄 Happy</button>
+  <button onclick="detectMood()">😤 Angry</button>
+  <button onclick="detectMood()">😔 Missing you</button>
+
+  <div id="result"></div>
+
+  <script>
+    function detectMood() {
+      document.getElementById("result").innerHTML =
+        "💖 Diagnosis:<br>Needs cuddle from Arghya ❤️<br>Needs Arghya's chocobar 🍫😋";
+
+      // chocolate rain
+      for (let i = 0; i < 20; i++) {
+        createChocolate();
+      }
+    }
+
+    function createChocolate() {
+      const choco = document.createElement("div");
+      choco.classList.add("chocolate");
+      choco.innerHTML = "🍫";
+
+      choco.style.left = Math.random() * window.innerWidth + "px";
+      choco.style.animationDuration = (2 + Math.random() * 3) + "s";
+
+      document.body.appendChild(choco);
+
+      setTimeout(() => {
+        choco.remove();
+      }, 5000);
+    }
+  </script>
+</body>
+</html>
